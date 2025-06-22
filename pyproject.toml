@@ -1,0 +1,10 @@
+[project]
+name = "RepoCompass"
+version = "0.1.0"
+description = "an AI-powered GitHub repository evaluation assistant"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai-agents>=0.0.19",
+    "tomli>=2.2.1",
+]

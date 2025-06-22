@@ -1,0 +1,16 @@
+[repo_agent]
+model = "deepseek-chat"
+base_url = "https://api.deepseek.com"
+api_key = "YOUR API KEY"
+
+[community_agent]
+model = "deepseek-chat"
+base_url = "https://api.deepseek.com"
+api_key = "YOUR API KEY"
+GITHUB_MCP_SERVER_COMMAND="LOCAL PATH FOR github-mcp-server"
+GITHUB_PERSONAL_ACCESS_TOKEN="YOUR GITHUB ACCESS TOKEN"
+
+[manager_agent]
+model = "deepseek-chat"
+base_url = "https://api.deepseek.com"
+api_key = "YOUR API KEY"
