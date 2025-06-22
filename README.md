@@ -51,6 +51,8 @@ graph LR
 
 ## ⚙️ Installation
 
+Download github-mcp-server from [here](https://github.com/github/github-mcp-server/releases)
+
 ```bash
 # Clone the repository
 git clone https://github.com/zhenjunMa/RepoCompass.git
