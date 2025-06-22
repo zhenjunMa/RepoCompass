@@ -23,31 +23,29 @@ def read_file(file_name: str) -> str:
         file_name: The absolute path for target file.
     """
 
-    with open(file_name, 'r', encoding='utf-8') as file:  # 'r' 代表读取模式，encoding 用于处理文件编码
-        content = file.read()  # 读取整个文件内容
+    with open(file_name, 'r', encoding='utf-8') as file:
+        content = file.read()
 
     return content
 
 def filtered_tree(directory):
     """
-    在指定目录执行过滤后的 tree 命令，保留文件夹、.md 文件和无后缀文件
+    Executes a filtered tree command in the specified directory, retaining folders, .md files, and files without extensions.
 
-    参数:
-        directory (str/Path): 目标目录路径
+    Parameters:
+        directory (str/Path): The path to the target directory.
 
-    返回:
-        str: 命令输出结果
+    Returns:
+        str: The output of the command.
     """
-    # 确保目录存在
+
     directory = Path(directory).resolve()
     if not directory.exists() or not directory.is_dir():
-        raise ValueError(f"目录不存在或不是有效目录: {directory}")
+        raise ValueError(f"Directory does not exist or is not a valid directory: {directory}")
 
-    # 构建命令 (安全处理路径)
     cmd = f"tree -F {shlex.quote(str(directory))} | grep -E '/$|\\.md$|^[^.]*$' | sed 's/^\\.$//'"
 
     try:
-        # 执行命令并捕获输出
         result = subprocess.run(
             cmd,
             shell=True,
@@ -55,13 +53,11 @@ def filtered_tree(directory):
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            # 设置环境确保使用UTF-8编码
             env={**os.environ, "LANG": "en_US.UTF-8", "LC_ALL": "en_US.UTF-8"}
         )
         return result.stdout.strip()
 
     except subprocess.CalledProcessError as e:
-        # 处理可能的错误
-        error_msg = f"命令执行失败 (code {e.returncode}):\n"
-        error_msg += f"错误信息: {e.stderr.strip() if e.stderr else '无'}"
+        error_msg = f"Command execution failed (code {e.returncode}):\n"
+        error_msg += f"Error message: {e.stderr.strip() if e.stderr else 'None'}"
         raise RuntimeError(error_msg) from e
