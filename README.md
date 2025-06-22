@@ -67,6 +67,9 @@ source .venv/bin/activate
 uv sync
 
 uv run main.py
+
+# please input your repo url: ${github repo url}
+# please input local path for your repo:${local code path for the repo above}
 ```
 
 ## 🚀 Usage
@@ -101,6 +104,7 @@ uv run main.py
 
 ## 🌐 Roadmap
 
+- [ ] Auto download repo from Github
 - [ ] Crawler for more data
 - [ ] Historical trend analysis
 - [ ] Custom evaluation rule sets
