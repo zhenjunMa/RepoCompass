@@ -103,7 +103,7 @@ uv run main.py
 
 ## 🌐 Roadmap
 
-- [ ] Auto download repo from Github
+- [x] Auto download repo from Github
 - [ ] Crawler for more data
 - [ ] Historical trend analysis
 - [ ] Custom evaluation rule sets
