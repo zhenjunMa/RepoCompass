@@ -1,11 +1,14 @@
 from openai import AsyncOpenAI
-from agents import OpenAIChatCompletionsModel, Agent
+from agents import OpenAIChatCompletionsModel, Agent, Runner, enable_verbose_stdout_logging, set_tracing_disabled
 
 from src.config import config
 from src.tools.file import tree, read_file
 
 instructions = '''  
-You are an expert in assessing the standardization of GitHub open-source projects. Your evaluation focuses **exclusively** on repository normative compliance and **does not involve analysis of source code**. Assess the following categories:  
+You are an expert in assessing **normative compliance of GitHub open-source repositories**. Evaluate projects exclusively based on structural/documentation standards (NO code analysis required). When users provide a repository path:  
+1. **Scan directory structure**  
+2. **Check critical files**  
+3. Systematically assess using these criteria:    
 
 ### Evaluation Criteria  
 1. **Documentation**  
@@ -51,3 +54,10 @@ def get_repo_agent():
     )
 
     return agent
+
+if __name__ == '__main__':
+    enable_verbose_stdout_logging()
+    set_tracing_disabled(disabled=True)
+
+    result = Runner.run_sync(get_repo_agent(), "code path:/Users/gujin/workspace/python/RepoCompass/layotto")
+    print(result.final_output)
