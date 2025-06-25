@@ -4,9 +4,6 @@ from openai import AsyncOpenAI
 
 from src.config import config
 
-enable_verbose_stdout_logging()
-set_tracing_disabled(disabled=True)
-
 
 instructions = f'''  
 You are an expert in evaluating GitHub project activity levels. Calculate a **comprehensive activity score (0-100)** based exclusively on the following GitHub metrics:  
@@ -60,3 +57,8 @@ def get_community_agent(mcp_server: MCPServer):
     )
 
     return agent
+
+if __name__ == '__main__':
+    enable_verbose_stdout_logging()
+    set_tracing_disabled(disabled=True)
+    #for test

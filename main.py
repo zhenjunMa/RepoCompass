@@ -1,12 +1,16 @@
 import asyncio
 
-from agents import Agent, Runner, OpenAIChatCompletionsModel
+from agents import Agent, Runner, OpenAIChatCompletionsModel, enable_verbose_stdout_logging, set_tracing_disabled
 from agents.mcp import MCPServerStdio
+from git import Repo
 from openai import AsyncOpenAI
 
 from src.agents.community_agent import get_community_agent
 from src.agents.repo_agent import get_repo_agent
-from src.config import config
+from src.config import config, PROJECT_ROOT
+
+enable_verbose_stdout_logging()
+set_tracing_disabled(disabled=True)
 
 model=OpenAIChatCompletionsModel(
     model=config.manager_agent.model,
@@ -48,7 +52,9 @@ async def main(user_repo_url: str, user_repo_local_path: str):
 
 
 if __name__ == "__main__":
-    repo_url = input("please input your repo url:")
-    local_path = input("please input local path for your repo:")
+    repo_url = input("please input your github repo url:")
+    project_local_path = PROJECT_ROOT / repo_url.split("/")[-1]
+    print("download the repo to:" + project_local_path.as_posix())
+    Repo.clone_from(repo_url, project_local_path)
 
-    asyncio.run(main(repo_url, local_path))
+    asyncio.run(main(repo_url, project_local_path))
