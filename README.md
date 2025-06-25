@@ -68,8 +68,7 @@ uv sync
 
 uv run main.py
 
-# please input your repo url: ${github repo url}
-# please input local path for your repo:${local code path for the repo above}
+# please input your github repo url: ${github repo url}
 ```
 
 ## 🚀 Usage
