@@ -43,6 +43,7 @@ graph LR
 2. **Repo Agent**  
    - Performs local repository analysis
    - Uses function calling for file system operations
+   - Interfaces with Git API via MCP server
    - Evaluates documentation quality and project structure
 
 3. **Community Agent**  
