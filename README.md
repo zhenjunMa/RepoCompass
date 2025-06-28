@@ -29,7 +29,8 @@ graph LR
     A[Manager Agent] --> B[Repo Agent]
     A --> C[Community Agent]
     B --> D[Function Calls]
-    C --> E[MCP Server]
+    B --> E[Git MCP Server]
+    C --> E[Github MCP Server]
 ```
 
 ### Core Agents
@@ -76,29 +77,36 @@ uv run main.py
 ### Sample Output
 
 ```
-### Evaluation Summary for XXX Repository
+Here's the evaluation summary for the XXX repository:
 
-#### **Standardization Compliance**
-- **Documentation**:
-  - ✅ **README file**: Comprehensive and includes a quickstart guide.
-  - ✅ **Official website link**: Provided (Demo link).
-  - ❌ **CONTRIBUTING guidelines**: Missing.
-  - ❌ **ROADMAP**: Missing.
-- **Licensing**:
-  - ✅ **License type**: MIT (clearly stated).
+### Standardization Evaluation
+1. **Documentation**:
+   - ✅ **README**: Comprehensive and includes a quickstart guide.
+   - ❌ **CONTRIBUTING Guidelines**: Missing.
+   - ❌ **ROADMAP**: Missing.
+   - ✅ **Official Website Link**: Included (Hugging Face Demo).
 
-#### **Community Activity Score**
-- **Final Score**: **75/100**
-  - **Issue Responsiveness**: **49/50** (average response time of ~24 hours).
-  - **Growth Analysis**: **25/50** (due to missing data on stars and active contributors).
+2. **Licensing**:
+   - ✅ **MIT License**: Clearly stated in the `LICENSE` file.
 
-### Recommendations
-1. **Improve Documentation**:
-   - Add a `CONTRIBUTING.md` file to guide contributors.
-   - Include a `ROADMAP.md` to outline future plans.
-2. **Enhance Community Engagement**:
-   - Encourage more stars and contributions to improve growth metrics.
-   - Maintain the current responsiveness to issues.
+3. **Code Activity**:
+   - **Average Update Interval**: ~7.5 days (last 10 commits).
+   - **Last Change**: 19 days ago.
+
+**Recommendations**:
+- Add a `CONTRIBUTING.md` file to guide contributors.
+- Include a `ROADMAP.md` to outline future plans.
+- Maintain more frequent updates for better engagement.
+
+---
+
+### Community Activity Score
+**Final Score**: **65/100**  
+**Breakdown**:
+1. **Issue Responsiveness**: 48/50 (average response time of ~48 hours).
+2. **Growth Analysis**: 17/50 (penalized due to missing data on stars and contributors).
+
+**Note**: The score could improve with available growth metrics (stars, contributors).
 ```
 
 ## 🌐 Roadmap

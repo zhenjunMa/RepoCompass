@@ -278,6 +278,21 @@ wheels = [
 ]
 
 [[package]]
+name = "mcp-server-git"
+version = "2025.1.14"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+dependencies = [
+    { name = "click" },
+    { name = "gitpython" },
+    { name = "mcp" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/5a/43/a148baa2b1e8599eda07c4b40aa95ff357afc62515388e365e8f12e55ffa/mcp_server_git-2025.1.14.tar.gz", hash = "sha256:34469d85b78370f4f167b7285da175ba735c7fccebfbf27569d9eed97bc467c2", size = 24735, upload-time = "2025-01-14T01:46:41.55Z" }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/84/af/cce17ee0dcaed40beda2d48a150850137caad0b824d9c491de1473fed364/mcp_server_git-2025.1.14-py3-none-any.whl", hash = "sha256:6f60aca3761fb91d6b2ee5282d68c69858c57a95a2124727b9ed6bb8ced581d5", size = 7484, upload-time = "2025-01-14T01:46:36.761Z" },
+]
+
+[[package]]
 name = "openai"
 version = "1.88.0"
 source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
@@ -449,6 +464,7 @@ dependencies = [
     { name = "gitingest" },
     { name = "gitpython" },
     { name = "httpx", extra = ["socks"] },
+    { name = "mcp-server-git" },
     { name = "openai-agents" },
     { name = "tomli" },
 ]
@@ -458,6 +474,7 @@ requires-dist = [
     { name = "gitingest", specifier = ">=0.1.4" },
     { name = "gitpython", specifier = ">=3.1.44" },
     { name = "httpx", extras = ["socks"], specifier = ">=0.28.1" },
+    { name = "mcp-server-git", specifier = ">=2025.1.14" },
     { name = "openai-agents", specifier = ">=0.0.19" },
     { name = "tomli", specifier = ">=2.2.1" },
 ]

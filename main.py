@@ -18,16 +18,23 @@ model=OpenAIChatCompletionsModel(
 )
 
 async def main(user_repo_url: str, user_repo_local_path: str):
-    async with MCPServerStdio(
+    git_mcp_server = MCPServerStdio(
+        cache_tools_list=True,
+        params={"command": "uvx", "args": ["mcp-server-git"]},
+    )
+
+    github_mcp_server = MCPServerStdio(
         cache_tools_list=True,
         params={
-                    "command": config.community_agent.mcp[0].command,
-                    "args": ["stdio", "--read-only", "--toolsets", "issues,users,context"],
-                    "env": config.community_agent.mcp[0].env
-                },
-    ) as server:
-        repo_agent = get_repo_agent()
-        community_agent = get_community_agent(server)
+            "command": config.community_agent.mcp[0].command,
+            "args": ["stdio", "--read-only", "--toolsets", "issues,users,context"],
+            "env": config.community_agent.mcp[0].env
+        },
+    )
+
+    async with git_mcp_server, github_mcp_server:
+        repo_agent = get_repo_agent(git_mcp_server)
+        community_agent = get_community_agent(github_mcp_server)
 
         triage_agent = Agent(
             name="manager_agent",
@@ -54,7 +61,10 @@ async def main(user_repo_url: str, user_repo_local_path: str):
 if __name__ == "__main__":
     repo_url = input("please input your github repo url:")
     project_local_path = PROJECT_ROOT / repo_url.split("/")[-1]
-    print("download the repo to:" + project_local_path.as_posix())
-    Repo.clone_from(repo_url, project_local_path)
+    print("start to download the repo to:" + project_local_path.as_posix())
+    if project_local_path.exists() is False:
+        Repo.clone_from(repo_url, project_local_path)
+    else:
+        print("repo is existed, so begin to analyze directly...")
 
     asyncio.run(main(repo_url, project_local_path))
