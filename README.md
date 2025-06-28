@@ -30,7 +30,7 @@ graph LR
     A --> C[Community Agent]
     B --> D[Function Calls]
     B --> E[Git MCP Server]
-    C --> E[Github MCP Server]
+    C --> F[Github MCP Server]
 ```
 
 ### Core Agents
