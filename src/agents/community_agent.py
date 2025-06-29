@@ -1,5 +1,7 @@
-from agents import Agent, OpenAIChatCompletionsModel, enable_verbose_stdout_logging, set_tracing_disabled
-from agents.mcp import MCPServer
+import asyncio
+
+from agents import Agent, OpenAIChatCompletionsModel, enable_verbose_stdout_logging, set_tracing_disabled, Runner
+from agents.mcp import MCPServer, MCPServerStdio
 from openai import AsyncOpenAI
 
 from src.config import config
@@ -18,29 +20,19 @@ You are an expert in evaluating GitHub project activity levels. Calculate a **co
 2. **Growth Metrics**  
    - Stars gained in last 30 days (20% weight)  
    - Active contributors in last 30 days (30% weight)  
-
-### Output Requirements  
-- **Final Score Format**:  
-  ```
-  Final Score: [0-100]/100  
-  Reasoning:  
-  1. Issue responsiveness: [avg_hours]h avg → [X]/50  
-  2. Growth analysis:  
-     - Stars: +[N] (90d)  
-     - Contributors: [K] active (180d)  
-     - Subscore: [Y]/50  
-  ```  
+  
 - *Critical rule*: When data unavailable, deduct 25% per missing metric  
 
-### Scoring Example  
-> Final Score: 83/100  
-> Reasoning:  
-> 1. Issue responsiveness: 18h avg → 47/50  
-> 2. Growth analysis:  
->    - Stars: +142 (90d)  
->    - Contributors: 9 active (180d)  
->    - Subscore: 36/50  
-
+### Output Requirements
+{{
+  "final_score": "83/100",
+  "reasoning": {{
+    "issue_responsiveness": "18h avg → 47/50",
+    "stars": "+142 (90d)",
+    "contributors": "9 active (180d)",
+    "sub_score": "36/50"
+  }}
+}}
 '''
 
 model=OpenAIChatCompletionsModel(
@@ -58,7 +50,20 @@ def get_community_agent(mcp_server: MCPServer):
 
     return agent
 
+async def main():
+    async with MCPServerStdio(
+        cache_tools_list=True,
+        params={
+            "command": config.community_agent.mcp[0].command,
+            "args": ["stdio", "--read-only", "--toolsets", "issues,users,context"],
+            "env": config.community_agent.mcp[0].env
+        },
+    ) as server:
+        result = await Runner.run(get_community_agent(server), "github repo url: https://github.com/FoundationAgents/OpenManus")
+        print(result.final_output)
+
 if __name__ == '__main__':
     enable_verbose_stdout_logging()
     set_tracing_disabled(disabled=True)
-    #for test
+
+    asyncio.run(main())

@@ -78,36 +78,42 @@ uv run main.py
 ### Sample Output
 
 ```
-Here's the evaluation summary for the XXX repository:
+### 📊 **Repository Analysis: AAA/bbb**
 
-### Standardization Evaluation
-1. **Documentation**:
-   - ✅ **README**: Comprehensive and includes a quickstart guide.
-   - ❌ **CONTRIBUTING Guidelines**: Missing.
-   - ❌ **ROADMAP**: Missing.
-   - ✅ **Official Website Link**: Included (Hugging Face Demo).
-
-2. **Licensing**:
-   - ✅ **MIT License**: Clearly stated in the `LICENSE` file.
-
-3. **Code Activity**:
-   - **Average Update Interval**: ~7.5 days (last 10 commits).
-   - **Last Change**: 19 days ago.
-
-**Recommendations**:
-- Add a `CONTRIBUTING.md` file to guide contributors.
-- Include a `ROADMAP.md` to outline future plans.
-- Maintain more frequent updates for better engagement.
+Here’s a detailed breakdown of the repository's standardization and community activity:
 
 ---
 
-### Community Activity Score
-**Final Score**: **65/100**  
-**Breakdown**:
-1. **Issue Responsiveness**: 48/50 (average response time of ~48 hours).
-2. **Growth Analysis**: 17/50 (penalized due to missing data on stars and contributors).
+#### 📂 **Repository Standardization**
+✅ **README**: Present  
+✅ **Quickstart Guide**: Available  
+✅ **Contributors Guide**: Included  
+⚠️ **Roadmap**: Missing  
+✅ **Official Website**: Linked  
+📜 **License**: MIT  
+🔄 **Update Frequency**: Every ~2.3 days (last updated 20 days ago)  
 
-**Note**: The score could improve with available growth metrics (stars, contributors).
+**Insight**: The repository is well-documented with essential guides and an MIT license, but a roadmap could improve project transparency.
+
+---
+
+#### 🚀 **Community Activity Score**
+🔢 **Final Score**: 49/100  
+
+**Breakdown**:  
+- **Issue Responsiveness**: 49/50 (average response time: ~18 hours)  
+- **Growth Metrics**: 0/50 (stars and contributors data unavailable)  
+
+**Key Findings**:  
+⚠️ **Issue Management**: Recent issues are addressed promptly, but some older issues (e.g., #720) have been inactive for months.  
+⚠️ **Growth Data**: Lack of recent stars and contributors data impacts the score.  
+
+---
+
+#### 🎯 **Recommendations**
+1. **Add a Roadmap**: Enhance project direction clarity.  
+2. **Monitor Older Issues**: Address or close inactive issues to maintain engagement.  
+3. **Encourage Contributions**: Promote the repository to attract more stars and contributors.  
 ```
 
 ## 🌐 Roadmap

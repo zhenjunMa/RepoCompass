@@ -17,6 +17,25 @@ model=OpenAIChatCompletionsModel(
     openai_client=AsyncOpenAI(api_key=config.manager_agent.api_key, base_url=config.manager_agent.base_url)
 )
 
+instructions = f"""
+You are RepoInsight AI, a GitHub repository analysis expert. Your task is to analyze repositories using two specialized tools and present findings in a clear, engaging format.
+
+**Workflow**:
+1. Receive user input: `<repoURL>` and optional `<repoPath>`
+2. Use tools **sequentially**:
+   - First call `repo_analyze` with repository details
+   - Then call `community_analyze` with same inputs
+3. Synthesize both reports into a single analysis
+
+**Output Requirements**:
+- Use GitHub-themed emojis for visual organization
+- Present data in 3 clear sections
+- Convert JSON fields to human-readable insights
+- Never show raw JSON outputs
+- Highlight critical findings with ⚠️/✅
+
+"""
+
 async def main(user_repo_url: str, user_repo_local_path: str):
     git_mcp_server = MCPServerStdio(
         cache_tools_list=True,
@@ -38,15 +57,15 @@ async def main(user_repo_url: str, user_repo_local_path: str):
 
         triage_agent = Agent(
             name="manager_agent",
-            instructions="For a given repository, first use repo_agent to analyze whether it meets the standard requirements by checking its local repository path, and then assign a score based on its community activity level by community_agent.",
+            instructions=instructions,
             tools=[
                 repo_agent.as_tool(
                     tool_name="repo_analyze",
-                    tool_description="evaluate standard requirements for a repo",
+                    tool_description="Evaluates repo from local path by structure/metadata ONLY, Returns JSON with keys:has_readme, has_quickstart, has_contributors_guide, has_roadmap, has_official_website, license_type,average_update_interval_days, days_since_last_update",
                 ),
                 community_agent.as_tool(
                     tool_name="community_analyze",
-                    tool_description="assign a score based on a repo's community activity",
+                    tool_description="Calculates activity score from GitHub metrics ONLY, Returns JSON with keys:final_score (str), reasoning (dict with: issue_responsiveness, stars, contributors, sub_score)",
                 ),
             ],
             model=model
