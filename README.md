@@ -2,7 +2,7 @@
   <h1>RepoCompass</h1>
 </div>
 
-**RepoCompass** is an AI-powered GitHub repository evaluation assistant that assesses both technical standards compliance and community activity metrics for open-source projects.
+**RepoCompass** is an LLM-based GitHub repository evaluation assistant that assesses both technical standards compliance and community activity metrics for open-source projects.
 
 ## ✨ Features
 
