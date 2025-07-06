@@ -81,22 +81,47 @@ uv run main.py
 ### Sample Output
 
 ```
-### 📊 **Repository Analysis: AAA/bbb**
-
-Here’s a detailed breakdown of the repository's standardization and community activity:
+### 📊 **XXX Repository Analysis**  
+Here’s a detailed breakdown of your repository's standardization and activity metrics:
 
 ---
 
-#### 📂 **Repository Standardization**
-✅ **README**: Present  
-✅ **Quickstart Guide**: Available  
-✅ **Contributors Guide**: Included  
-⚠️ **Roadmap**: Missing  
-✅ **Official Website**: Linked  
-📜 **License**: MIT  
-🔄 **Update Frequency**: Every ~2.3 days (last updated 20 days ago)  
+### 🏗️ **Standardization Evaluation**  
+✅ **README**: Comprehensive and well-structured.  
+✅ **Quickstart Guide**: Clear installation and setup steps provided.  
+✅ **Contributors Guide**: Guidelines for contributions are included.  
+⚠️ **Roadmap**: Missing a dedicated roadmap or future plans section.  
+✅ **Official Website**: Links to a demo and DOI are provided.  
+✅ **License**: MIT License is included.  
 
-**Insight**: The repository is well-documented with essential guides and an MIT license, but a roadmap could improve project transparency.
+**Code Activity**:  
+- **Average Update Interval**: Every ~7.3 days.  
+- **Last Update**: 27 days ago (June 9, 2025).  
+
+**Recommendation**:  
+- Add a roadmap to clarify future development plans.  
+- Aim for more frequent updates to maintain momentum.  
+
+---
+
+### 📈 **Activity Score: 64/100**  
+#### **Breakdown**:  
+1. **Issue Responsiveness**:  
+   - Average response time: ~2.5 days.  
+   - **Score**: 47.5/50 (Excellent responsiveness).  
+
+2. **Statistics Metrics**:  
+   - **Stars**: 47.6k  
+   - **Forks**: 8.3k  
+   - **Open Issues**: 422  
+   - **Open PRs**: 133  
+   - **Contributors**: 54  
+   - **Sub-score**: 16.125/50 (Room for improvement in community engagement).  
+
+**Recommendation**:  
+- Encourage more contributors to resolve open issues and PRs.  
+- Promote the repository to increase stars and forks.  
+
 
 ---
 
