@@ -60,6 +60,9 @@ Download github-mcp-server from [here](https://github.com/github/github-mcp-serv
 git clone https://github.com/zhenjunMa/RepoCompass.git
 cd RepoCompass
 
+# Install playwright if needed
+uv run playwright install 
+
 # Set up environment variables
 cp config/config.example.toml config/config.toml
 
@@ -119,7 +122,7 @@ Here’s a detailed breakdown of the repository's standardization and community 
 ## 🌐 Roadmap
 
 - [x] Auto download repo from Github
-- [ ] Crawler for more data
+- [x] Crawler for more data
 - [ ] Historical trend analysis
 - [ ] Custom evaluation rule sets
 

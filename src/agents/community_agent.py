@@ -5,7 +5,7 @@ from agents.mcp import MCPServer, MCPServerStdio
 from openai import AsyncOpenAI
 
 from src.config import config
-
+from src.tools.github import get_statistics_from_github
 
 instructions = '''  
 You are an expert in evaluating GitHub project activity levels. Calculate a **comprehensive activity score (0-100)** based exclusively on the following GitHub metrics:  
@@ -17,9 +17,12 @@ You are an expert in evaluating GitHub project activity levels. Calculate a **co
    - **Scoring logic**: Lower time delta = Higher score  
    - *Formula*: `Score = max(0, 50 - (avg_hours / 24))` (Cap at 50 points)  
 
-2. **Growth Metrics**  
-   - Stars gained in last 30 days (20% weight)  
-   - Active contributors in last 30 days (30% weight)  
+2. **Statistics Metrics**  
+   - The number of stars (10% weight)  
+   - The number of forks (5% weight)
+   - The number of open issues (10% weight)
+   - The number of open pull requests (10% weight)
+   - The number of contributors (10% weight)  
   
 - *Critical rule*: When data unavailable, deduct 25% per missing metric  
 
@@ -43,6 +46,7 @@ def get_community_agent(mcp_server: MCPServer):
     agent = Agent(
         name="community_agent",
         instructions=instructions,
+        tools=[get_statistics_from_github],
         mcp_servers=[mcp_server],
         model=model
     )
