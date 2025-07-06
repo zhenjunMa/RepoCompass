@@ -6,7 +6,7 @@ from agents import OpenAIChatCompletionsModel, Agent, Runner, enable_verbose_std
 from pydantic import BaseModel, Field
 
 from src.config import config
-from src.tools.file import tree, read_file, get_current_time
+from src.tools.file import tree, read_file, get_current_time, git_clone_repo
 
 instructions = '''  
 You are an expert in assessing **structural and documentation compliance of GitHub repositories**. Evaluate repositories exclusively based on file presence, content patterns, and commit history (NO code analysis). Follow this workflow when users provide a repository path:
@@ -76,7 +76,7 @@ def get_repo_agent(mcp_server: MCPServer):
     agent = Agent(
         name="repo_agent",
         instructions=instructions,
-        tools=[tree, read_file, get_current_time],
+        tools=[tree, read_file, get_current_time, git_clone_repo],
         mcp_servers=[mcp_server],
         model=model,
     )
@@ -88,7 +88,7 @@ async def main():
         cache_tools_list=True,
         params={"command": "uvx", "args": ["mcp-server-git"]},
     ) as server:
-        result = await Runner.run(get_repo_agent(server), "/Users/gujin/workspace/python/RepoCompass/OpenManus")
+        result = await Runner.run(get_repo_agent(server), "https://github.com/FoundationAgents/OpenManus")
         print(result.final_output)
 
 if __name__ == '__main__':

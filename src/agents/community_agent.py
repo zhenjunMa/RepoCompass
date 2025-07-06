@@ -7,7 +7,7 @@ from openai import AsyncOpenAI
 from src.config import config
 
 
-instructions = f'''  
+instructions = '''  
 You are an expert in evaluating GitHub project activity levels. Calculate a **comprehensive activity score (0-100)** based exclusively on the following GitHub metrics:  
 
 ### Evaluation Criteria  
@@ -23,16 +23,15 @@ You are an expert in evaluating GitHub project activity levels. Calculate a **co
   
 - *Critical rule*: When data unavailable, deduct 25% per missing metric  
 
-### Output Requirements
-{{
+### Output Requirements Example
+{
   "final_score": "83/100",
-  "reasoning": {{
+  "reasoning": {
     "issue_responsiveness": "18h avg → 47/50",
     "stars": "+142 (90d)",
     "contributors": "9 active (180d)",
     "sub_score": "36/50"
-  }}
-}}
+}
 '''
 
 model=OpenAIChatCompletionsModel(

@@ -1,7 +1,9 @@
 from datetime import datetime
 
 from agents import function_tool
+from git import Repo
 from gitingest import ingest_async
+from src.config import PROJECT_ROOT
 
 @function_tool()
 async def tree(path: str) -> str:
@@ -37,3 +39,22 @@ def get_current_time() -> str:
         Example: "2023-10-15T14:30:45.123456"
     """
     return datetime.now().isoformat()
+
+@function_tool()
+def git_clone_repo(repo_url: str) -> str:
+    """
+    download repo to local path
+
+    Args:
+        repo_url: the url for repo to be analyzed
+
+    Returns:
+        the local path for the repo
+    """
+    project_local_path = PROJECT_ROOT / repo_url.split("/")[-1]
+    print("start to download the repo to:" + project_local_path.as_posix())
+    if project_local_path.exists() is False:
+        Repo.clone_from(repo_url, project_local_path, depth=10)
+    else:
+        print("repo is existed, so begin to analyze directly...")
+    return project_local_path
